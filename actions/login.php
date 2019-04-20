@@ -19,7 +19,7 @@
       $results["message"] = "Succesfully logged in! Redirecting...";
 
       if (!isset($_POST["ajax"]))
-        header("Location: ../dashboard.php?uID=".$user->$userID."");
+        header("Location: ../dashboard.php");
     }
   }
 

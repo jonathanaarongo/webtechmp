@@ -9,7 +9,7 @@
                     $eMail, $pathToDP) {
 
       $this->userId = $userID;
-      $this->$userType= $userType;
+      $this->userType= $userType;
       $this->username = $userName;
       $this->password = $passWord;
       $this->firstname = $firstName;

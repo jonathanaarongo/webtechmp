@@ -14,15 +14,13 @@ session_start();
 
 
   ?>
-
 <html>
 
 <head>
   <meta charset="utf-8">
   <title> Dashboard </title>
 
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
   <!--- Semantic CSS --->
   <link rel="stylesheet" type="text/css" href="./semantic/dist/semantic.min.css">
   <link rel="stylesheet" type="text/css" href="./semantic/dist/components/reset.css">
@@ -40,6 +38,8 @@ session_start();
   <link rel="stylesheet" type="text/css" href="./semantic/dist/components/dropdown.css">
   <link rel="stylesheet" type="text/css" href="./semantic/dist/components/icon.css">
   <link rel="stylesheet" type="text/css" href="./semantic/dist/components/overflow.css">
+  <link rel="stylesheet" type="text/css" href="dropzone/dist/min/dropzone.min.css">
+
 </head>
 
 <style type="text/css">
@@ -106,98 +106,82 @@ session_start();
         </div>
       </div>
     </div>
-  <br><br><br><br>
-  <div class="ui visible message">
-    <?php
-    echo "<h3 class='ui header'>Welcome back, $user->username  </h3>";
-    echo "<p>Here are what you can do:</p>";
-    ?>
-  </div>
-  <hr>
-  </hr>
-  <?php
-    #load_dashboard();
-      var_dump ($user);
-  ?>
-  <div class="ui internally celled grid">
-    <div class="row">
-    <div class="centered ten wide column">
+      <br/><br/><br/><br/><br/><br/>
+
+<div class="ui internally celled grid">
       <div class="ui grid">
-        <div class="two column row">
-          <div class="column">
-            <div class="ui segment">
-            <h4> <i class="upload icon"></i>Upload your Photos!</h4>
-            <div class="ui cards">
-              <div class="ui fluid card">
-                <div class="content">
-                  <div class="header">
-                    Click here to upload your Photos!
-                  </div>
-                  <div align="right" class="count">
-                  <b><i>  </b></i>
-                 </div>
-                  <div class="description">
-                    Accepted file types are ".PNG, .JPG, .JPEG, .GIF"
-                  </div>
-                </div>
-                <div class="extra content">
-                      <a class="ui fluid button" href="uploadphotos.php">Go</a>
-                </div>
-              </div>
+      <div class="three column row">
+      <div class="four wide column"></div>
+      <div class="eight wide column">
+            <div class="ui tabular menu">
+            <a class="item active">
+            Upload
+            </a>
+            <a class="item">
+            Photo Gallery
+            </a>
             </div>
-          </div>
-        </div>
 
-        <div class="column">
-          <div class="ui segment">
-          <h4> <i class="image outline icon"></i>View your Photo Gallery!</h4>
-          <div class="ui cards">
-            <div class="ui fluid card">
-              <div class="content">
-                <div class="header">
-                  Click here to View your photo gallery!
-                </div>
-                <div align="right" class="count">
-                <b><i>  </b></i>
-               </div>
-                <div class="description">
-                  Add your vessel to the system!
-                </div>
-              </div>
-              <div class="extra content">
-                    <a class="ui fluid button" href="photogallery.php">Go</a>
-              </div>
+            <br/>
+            <?php
+             var_dump($user);
+          echo      "<h3 class='ui dividing header'>";
+          echo      "Upload your Photos here $user->username";
+          echo      "</h3>";
+          ?>
+
+          <div class="container" >
+            <div class='content'>
+               <form action="upload.php" class="dropzone" >
+               </form>
             </div>
+
+            <input type="button" id='uploadfiles' value='Upload Files' >
           </div>
+
+
+      </div>
+          <div class="four wide column"></div>
+    </div>
+      </div>
+</div>
+
+  <div class="ui inverted secondary vertical footer segment">
+    <div class="ui center aligned container">
+      <div class="ui stackable inverted divided grid">
+        <div class="seven wide column">
+          <h4 class="ui inverted header"></h4>
+          <p class="foot"></p>
         </div>
       </div>
-
-        </div>
+      <div class="ui inverted section divider"></div>
+      <div class="ui horizontal inverted small divided link list">
+        <a class="item" href="#">Contact Us</a>
+        <a class="item"</a>
+        <a class="item"></a>
       </div>
     </div>
   </div>
-</div>
-
-<div class="ui inverted secondary vertical footer segment">
-  <div class="ui center aligned container">
-    <div class="ui stackable inverted divided grid">
-      <div class="seven wide column">
-        <h4 class="ui inverted header"></h4>
-        <p class="foot"></p>
-      </div>
-    </div>
-    <div class="ui inverted section divider"></div>
-    <div class="ui horizontal inverted small divided link list">
-      <a class="item" href="#">Contact Us</a>
-      <a class="item"</a>
-      <a class="item"></a>
-    </div>
-  </div>
-</div>
-  </body>
+    </body>
 
 
-<!--- Semantic JS --->
-<script src="./semantic/dist/semantic.min.js"></script>
 
-</html>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <!--- Semantic JS --->
+  <script src="./semantic/dist/semantic.min.js"></script>
+  <script src="dropzone/dist/min/dropzone.min.js"></script>
+<script>
+Dropzone.autoDiscover = false;
+
+var myDropzone = new Dropzone(".dropzone", {
+   autoProcessQueue: false,
+   parallelUploads: 10 // Number of files process at a time (default 2)
+});
+
+$('#uploadfiles').click(function(){
+   myDropzone.processQueue();
+});
+</script>
+
+  </html>
