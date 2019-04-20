@@ -1,0 +1,7 @@
+body {
+  padding: 2em;
+}
+
+input[type="file"] {
+  display:none;
+}
