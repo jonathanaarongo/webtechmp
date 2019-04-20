@@ -82,8 +82,8 @@ session_start();
         <div class="ui simple dropdown item">
           Functionalities <i class="dropdown icon"></i>
           <div class="menu">
-            <a class="item" href="./addvessels.php">View Gallery</a>
-            <a class="item" href="./sendServRequest.php">Photo Upload</a>
+            <a class="item" href="./photogallery.php">View Gallery</a>
+            <a class="item" href="./uploadphotos.php">Photo Upload</a>
           </div>
         </div>
         <div class="right item">
