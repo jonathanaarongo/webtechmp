@@ -1,8 +1,8 @@
 <?php
   header('Content-Type: application/json');
-  include_once "./database.php";
-  include_once "./helpers.php";
-  include_once "./classes/Users.php";
+  include_once "database.php";
+  include_once "helpers.php";
+  include_once "classes/Users.php";
 
   $results = array("status" => 0, "message" => "Incomplete data sent...");
   if (isset_and(POST, array("username", "password"))) {
@@ -19,7 +19,7 @@
       $results["message"] = "Succesfully logged in! Redirecting...";
 
       if (!isset($_POST["ajax"]))
-        header("Location: /webtechmp/dashboard.php");
+        header("Location: ../dashboard.php?uID=".$user->$userID."");
     }
   }
 

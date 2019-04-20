@@ -1,8 +1,8 @@
 <?php
-  include_once "./actions/classes/Users.php";
+  include_once "../classes/Users.php";
 
   if (!isset($_SESSION["account"])) {
-    header("Location: ./index.php");
+    header("Location: ../../login.php");
     die();
   }
 

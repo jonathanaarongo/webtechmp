@@ -7,17 +7,17 @@
   define ("GET", $_GET);
 
   function isset_and ($data = POST, $vars = array()) {
-    foreach($vars as $var) 
-      if (!isset($data[$var])) 
+    foreach($vars as $var)
+      if (!isset($data[$var]))
         return false;
       else if(is_string($data[$var]) && strlen($data[$var]) == 0)
         return false;
-    
+
     return true;
   }
 
   function isset_or ($data = POST, $vars = array()) {
-    foreach($vars as $var) 
+    foreach($vars as $var)
       if (isset($data[$var]))
         return true;
 

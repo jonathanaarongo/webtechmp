@@ -55,21 +55,124 @@
 
   <!---TOP MENU -->
   <?php
-    include_once "./actions/helpers.php";
+  include_once "actions/helpers.php";
+  include_once "../classes/Users.php";
+  session_start();
 
-    load_navigation();
+    if (!isset($_SESSION["account"])) {
+      header("Location: ../../login.php");
+      die();
+    }
 
+
+    $user = unserialize($_SESSION["account"], array("User"));
+    #load_navigation();
     ?>
+    <div class="ui fixed inverted menu">
+      <div class="ui container">
+        <a href="./" class="header item">
+          <img class="logo" src="./images/logo alternate.png">
+          GO && INDEFENZO PHOTOGALLERY
+        </a>
+        <a href="./" class="item">Home</a>
+        <div class="ui simple dropdown item">
+          Functionalities <i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="item" href="./addvessels.php">View Gallery</a>
+            <a class="item" href="./sendServRequest.php">Photo Upload</a>
+          </div>
+        </div>
+        <div class="right item">
+          <div class=" user top right ui simple dropdown item" data-content="View profile and more">
+            <img class="ui mini rounded image" src="./images/mrkrabs.jpg">
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <?php
+            echo " <div class='user header'>";
+            echo    "Signed in as <b>$user->userName</b>";
+            echo " </div>";
+              ?>
+              <div class="divider"></div>
+              <a class="item" href="yourprofile.html">Your Profile</a>
+              <a class="item" href ="accounthistory.html">Your Account History</a>
+              <div class="divider"></div>
+              <a class="item" href="./actions/logout.php">Sign Out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <br><br><br><br>
   <div class="ui visible message">
     <h3 class="ui header">Welcome back, </h3>
-    <p>There are pending things for you to do <a href="actions/logout.php">signout</a> </p>
+    <?php
+    echo "<p>There are pending things for you to do <a href='actions/logout.php'>signout</a> $user->userName </p>";
+    ?>
   </div>
   <hr>
   </hr>
   <?php
-    load_dashboard();
-  ?> 
+    #load_dashboard();
+  ?>
+  <div class="ui internally celled grid">
+    <div class="row">
+    <div class="centered ten wide column">
+      <div class="ui grid">
+        <div class="two column row">
+          <div class="column">
+            <div class="ui segment">
+            <h4> <i class="upload icon"></i>Upload your Photos!</h4>
+            <div class="ui cards">
+              <div class="ui fluid card">
+                <div class="content">
+                  <img class="right floated mini ui image" src="images/test.png">
+                  <div class="header">
+                    Click here to upload your Photos!
+                  </div>
+                  <div align="right" class="count">
+                  <b><i>  </b></i>
+                 </div>
+                  <div class="description">
+                    Accepted file types are ".PNG, .JPG, .JPEG, .GIF"
+                  </div>
+                </div>
+                <div class="extra content">
+                      <a class="ui fluid button" href="uploadphotos.php">Go</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="ui segment">
+          <h4> <i class="image outline icon"></i>View your Photo Gallery!</h4>
+          <div class="ui cards">
+            <div class="ui fluid card">
+              <div class="content">
+                <img class="right floated mini ui image" src="images/test.png">
+                <div class="header">
+                  Click here to View your photo gallery!
+                </div>
+                <div align="right" class="count">
+                <b><i>  </b></i>
+               </div>
+                <div class="description">
+                  Add your vessel to the system!
+                </div>
+              </div>
+              <div class="extra content">
+                    <a class="ui fluid button" href="photogallery.php">Go</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="ui inverted secondary vertical footer segment">

@@ -133,14 +133,17 @@ include_once "actions/helpers.php";
     $birthDate = date_create_from_format("F d, Y", sanitize(POST["birthDate"], SPACE, FILTER_SANITIZE_STRING, $mysqli));
 
 
+    if($_POST['createacc']==NULL){
+      echo "<script>alert('No Information Sent');</script>";
+    }
 
-    $userCheck = mysqli_query('SELECT COUNT(*) FROM `users` WHERE userName = $userName');
+    $userCheck = mysqli_query("SELECT COUNT(*) FROM `users` WHERE userName = '{$userName}'");
     $row = mysqli_fetch_array($userCheck,MYSQLI_ASSOC);
     if (row['count'] > 0) {
       echo "<script>alert('The username is already taken!');</script>";
     }
 
-    $emailCheck = mysqli_query('SELECT COUNT(*) FROM `users` WHERE eMail =$eMail');
+    $emailCheck = mysqli_query("SELECT COUNT(*) FROM `users` WHERE eMail ='{$eMail}'");
     $row2 = mysqli_fetch_array($emailCheck,MYSQLI_ASSOC);
 
     if(row2['count'] >0){
@@ -148,7 +151,8 @@ include_once "actions/helpers.php";
     }
 
     else {
-      $createquery ="INSERT INTO `users`(`userType`,`userName`, `passWord`,`firstName`,`lastName`,`birthDate`,`eMail`) VALUES('1','{$userName}','{$passWord}','{$firstName}','{$lastName}','{$birthDate}','{$eMail}')";
+      $createquery ="INSERT INTO `users`(userType,userName, passWord,firstName,lastName,birthDate,eMail)
+      VALUES('1','{$userName}','{$passWord}','{$firstName}','{$lastName}','{$birthDate}','{$eMail}')";
       $createresult=mysqli_query($mysqli,$createquery);
       echo "<script>alert('Account Created Successfully!');</script>";
       header("Location: /webtechmp/login.php");

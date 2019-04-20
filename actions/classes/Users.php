@@ -68,14 +68,14 @@
     }
 
       public static function get_userID($mysqli, $userId) {
-      $stmt = $mysqli->prepare("SELECT `userID` FROM `users` WHERE `userID` = ? LIMIT 1");
+      $stmt = $mysqli->prepare("SELECT * FROM `users` WHERE `userID` = ? LIMIT 1");
       $stmt->bind_param("i", $userId);
       $stmt->execute();
 
       $result = $stmt->get_result();
       $stmt->close();
 
-      return $result->fetch_assoc()["principalID"];
+      return $result->fetch_assoc()["userID"];
       }
   }
 ?>
